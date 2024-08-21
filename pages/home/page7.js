@@ -294,4 +294,4 @@ export async function getStaticProps () {
   }
 }
 
-export default moviesPage7
+export default MoviesPage7
