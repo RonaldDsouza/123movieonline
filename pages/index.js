@@ -357,7 +357,7 @@ export default function HomePage() {
           <p className='subtitle'>
             The premier platform for the latest releases and secure downloads.
           </p>
-          <Link href='https://123movieonline.netlify.app/home'>
+          <Link href='/home'>
             <div className='cta-button'>Enter 123Moviesonline™</div>
           </Link>
         </div>
