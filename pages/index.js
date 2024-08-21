@@ -1,325 +1,508 @@
-import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import moviesData from '../public/movies.json'
-import { useRouter } from 'next/router'
-import GoogleTranslate from '../components/GoogleTranslate'
-import SocialSharing from '../components/SocialSharing'
-import SearchComponent from '../components/SearchComponent'
-import Head from 'next/head'
-import Script from 'next/script'
+import Head from 'next/head';
+import Link from 'next/link';
 
-const uwatchfreeSchema = JSON.stringify([
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: '123Moviesonline - Explore. Discover. Download.',
-    url: 'https://123movieonline.netlify.app/',
-    image: ['https://123movieonline.netlify.app/favicon.ico'],
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://123movieonline.netlify.app/logo.png',
-      width: 280,
-      height: 80
-    }
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    url: 'https://123movieonline.netlify.app/',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://123movieonline.netlify.app/search?q={search_term_string}'
-      },
-      'query-input': 'required name=search_term_string'
-    }
-  }
-])
+export default function HomePage() {
 
-const softwareSchema = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  '@id': 'https://123movieonline.netlify.app/movies/',
-  headline: 'movies Section | 123Moviesonline™',
-  url: 'https://123movieonline.netlify.app/movies/',
-  description:
-    '123Moviesonline - Stream HD movies and TV series for free on 123Movies Online. Explore, stream, and download full-length movies and shows in HD quality without registration.',
-  image: 'https://123movieonline.netlify.app/og_image.jpg',
-  author: {
-    '@type': 'Person',
-    name: 'DrTrailer',
-    url: 'https://gravatar.com/drtrailer2022'
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: '123Moviesonline - Explore. Discover. Download.',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://123movieonline.netlify.app/og_image.jpg'
-    }
-  },
-  datePublished: '2024-06-02',
-  dateModified: '2024-06-02',
-  mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': 'https://123movieonline.netlify.app/movies/'
-  },
-  additionalProperty: {
-    '@type': 'PropertyValue',
-    name: 'Action Platform',
-    value: ['movies Web Platform', 'iOS Platform', 'Android Platform']
-  }
-})
-
-const breadcrumbSchema = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
+  const uwatchfreeSchema = JSON.stringify([
     {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Windows',
-      item: 'https://123movieonline.netlify.app/'
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: '123Movies Online™ - Explore. Stream. Online. ',
+      url: 'http://localhost:3000/',
+      image: ['http://localhost:3000/favicon.ico'],
+      logo: {
+        '@type': 'ImageObject',
+        url: 'http://localhost:3000/logo.png',
+        width: 280,
+        height: 80
+      }
     },
     {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'movies',
-      item: 'https://123movieonline.netlify.app/movies/'
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      url: 'http://localhost:3000/',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: 'http://localhost:3000/search?q={search_term_string}'
+        },
+        'query-input': 'required name=search_term_string'
+      }
     }
-  ]
-})
+  ])
 
+  const rankMathSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Person',
+        '@id': 'http://localhost:3000/author/123moviesonline/',
+        name: 'Dr Trailer',
+        url: 'http://localhost:3000/author/123moviesonline/',
+        image: {
+          '@type': 'ImageObject',
+          '@id': 'https://gravatar.com/drtrailer2022',
+          url: 'https://gravatar.com/drtrailer2022',
+          caption: 'Dr Trailer',
+          inLanguage: 'en-US'
+        }
+      },
+      {
+        '@type': 'Organization',
+        '@id': 'http://localhost:3000/#organization',
+        name: '123Movies Online™ - Explore. Stream. Online. ',
+        url: 'http://localhost:3000'
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'http://localhost:3000/#website',
+        url: 'http://localhost:3000',
+        name: '123Movies Online™ - Explore. Stream. Online. ',
+        publisher: {
+          '@type': 'Organization',
+          '@id': 'http://localhost:3000/#organization'
+        },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'http://localhost:3000/?s={search_term_string}',
+          'query-input': 'required name=search_term_string'
+        }
+      },
+      {
+        '@type': 'WebPage',
+        '@id': 'http://localhost:3000/#webpage',
+        url: 'http://localhost:3000/',
+        name: 'Movie',
+        datePublished: '2024-01-13T13:00:00+00:00',
+        dateModified: '2024-01-13T13:13:00+00:00',
+        about: {
+          '@type': 'Person',
+          '@id': 'http://localhost:3000/author/123moviesonline/',
+          name: 'Dr Trailer',
+          url: 'http://localhost:3000/author/123moviesonline/',
+          image: {
+            '@type': 'ImageObject',
+            '@id': 'https://gravatar.com/drtrailer2022',
+            url: 'https://gravatar.com/drtrailer2022',
+            caption: 'Dr Trailer',
+            inLanguage: 'en-US'
+          }
+        },
+        isPartOf: {
+          '@id': 'http://localhost:3000/#website'
+        },
+        inLanguage: 'en-US',
+        mainEntity: [
+          {
+            '@type': 'Article',
+            '@id': 'http://localhost:3000/',
+            url: 'http://localhost:3000/',
+            headline: '123Movies Online™ - Explore. Stream. Online. ',
+            datePublished: '2024-01-13T13:00:00+00:00',
+            dateModified: '2024-01-13T13:13:00+00:00',
+            author: {
+              '@type': 'Person',
+              '@id': 'http://localhost:3000/author/123moviesonline/',
+              name: 'Dr Trailer',
+              url: 'http://localhost:3000/author/123moviesonline/',
+              image: {
+                '@type': 'ImageObject',
+                '@id': 'https://gravatar.com/drtrailer2022',
+                url: 'https://gravatar.com/drtrailer2022',
+                caption: 'Dr Trailer',
+                inLanguage: 'en-US'
+              }
+            },
+            publisher: {
+              '@type': 'Organization',
+              '@id': 'http://localhost:3000/#organization',
+              name: '123Movies Online™ - Explore. Stream. Online. ',
+              url: 'http://localhost:3000'
+            }
+          },
+          {
+            '@type': 'Article',
+            '@id': 'http://localhost:3000/',
+            url: 'http://localhost:3000/',
+            headline: '123Movies Online™ - Explore. Stream. Online. ',
+            datePublished: '2024-01-13T13:00:00+00:00',
+            dateModified: '2024-01-13T13:13:00+00:00',
+            author: {
+              '@type': 'Person',
+              '@id': 'http://localhost:3000/author/123moviesonline/',
+              name: 'Dr Trailer',
+              url: 'http://localhost:3000/author/123moviesonline/',
+              image: {
+                '@type': 'ImageObject',
+                '@id': 'https://gravatar.com/drtrailer2022',
+                url: 'https://gravatar.com/drtrailer2022',
+                caption: 'Dr Trailer',
+                inLanguage: 'en-US'
+              }
+            },
+            publisher: {
+              '@type': 'Organization',
+              '@id': 'http://localhost:3000/#organization',
+              name: '123Movies Online™ - Explore. Stream. Online. ',
+              url: 'http://localhost:3000'
+            }
+          },
+          {
+            '@type': 'Article',
+            '@id': 'http://localhost:3000/',
+            url: 'http://localhost:3000/',
+            headline: '123Movies Online™ - Explore. Stream. Online. ',
+            datePublished: '2024-01-13T13:00:00+00:00',
+            dateModified: '2024-01-13T13:13:00+00:00',
+            author: {
+              '@type': 'Person',
+              '@id': 'http://localhost:3000/author/123moviesonline/',
+              name: 'Dr Trailer',
+              url: 'http://localhost:3000/author/123moviesonline/',
+              image: {
+                '@type': 'ImageObject',
+                '@id': 'https://gravatar.com/drtrailer2022',
+                url: 'https://gravatar.com/drtrailer2022',
+                caption: 'Dr Trailer',
+                inLanguage: 'en-US'
+              }
+            }
+          }
+        ]
+      }
+    ]
+  })
 
-
-const moviesPage = ({ items }) => {
-
-  const router = useRouter() // Initialize the router
-  const sections = [
-    // { title: 'Latest Trailer', items: trailers },
-    { title: 'Main Section.', items: items }
-    // { title: 'Latest TV Series.', items: tvshows }
-    // { title: 'Adult Content.', items: adults }
-  ]
-
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const handlePageSelect = page => {
-    setCurrentPage(page)
-  }
-
+  const languagesSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    url: 'http://localhost:3000/',
+    name: '123Movies Online™ - Explore. Stream. Online.',
+    alternateName: [
+      '123Movies Online™ - Explorar. Transmitir. En línea.',
+      '123Movies Online™ - Explorer. Diffuser. En ligne.',
+      '123Movies Online™ - Entdecken. Streamen. Online.',
+      '123Movies Online™ - 探索。串流。在线。',
+      '123Movies Online™ - 探索する。ストリーミング。オンライン。',
+      '123Movies Online™ - 탐험하다. 스트리밍. 온라인.',
+      '123Movies Online™ - Explorar. Transmitir. Online.',
+      '123Movies Online™ - Esplora. Streaming. Online.',
+      '123Movies Online™ - Исследовать. Поток. Онлайн.',
+      '123Movies Online™ - استكشاف. بث. اون لاين.'
+    ],
+    inLanguage: [
+      'es',
+      'fr',
+      'de',
+      'zh-Hans',
+      'ja',
+      'ko',
+      'pt',
+      'it',
+      'ru',
+      'ar'
+    ]
+  })
   return (
-    // <div className='w-full' style={{ backgroundColor: '#D3D3D3' }}>
-    <div className='w-full' style={{ backgroundColor: '#000' }}>
-      <Head>
-        <title> Main Section | 123Moviesonline™</title>
-        <link rel='canonical' href='https://123movieonline.netlify.app/movies/' />
+    <>
+        <Head>
+        <title>123Movies Online™ - Explore. Stream. Online.</title>
+
+        <link
+          rel='sitemap'
+          type='application/xml'
+          title='Sitemap'
+          href='http://localhost:3000/sitemap.xml'
+        />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+        <link
+          rel='apple-touch-icon'
+          sizes='180x180'
+          href='/apple-touch-icon.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
+          href='/favicon-32x32.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='16x16'
+          href='/favicon-16x16.png'
+        />
+        <link rel='manifest' href='/site.webmanifest' />
+        <meta name='googlebot' content='index,follow' />
+        <meta name='revisit-after' content='1 days' />
+        <meta name='referrer' content='origin' />
         <meta
           name='robots'
           content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
-        />
-        <meta name='robots' content='index, follow' />
-        <meta name='googlebot' content='index,follow' />
-        <meta name='revisit-after' content='1 days' />
-        <meta property='og:locale' content='en_US' />
-        <meta property='og:type' content='website' />
-        <meta property='og:title' content=' Main Section | 123Moviesonline™' />
-        <meta
-          property='og:description'
-          content='123Moviesonline™ - Stream HD movies and TV series for free on 123Movies Online. Explore, stream, and download full-length movies and shows in HD quality without registration.'
-        />
-
-        <meta property='og:url' content='https://123movieonline.netlify.app/movies' />
-
-        <meta property='og:site_name' content='123Moviesonline™' />
-        <meta property='og:type' content='article' />
-        <meta
-          property=' og:image:alt'
-          content='https://123movieonline.netlify.app/og_image.jpg'
-        />
-        <meta name='mobile-web-app-capable' content='yes' />
-        <meta property='article:section' content='123Moviesonline™' />
-        <meta name='author' content='admin' />
-        <meta
-          property='article:modified_time'
-          content='2024-01-01T13:13:13+00:00'
         />
         <meta
           name='keywords'
           content='123movies, 123moviesHUB, 123moviesFREE, 123movies-hd, 123moviesx, 123movies-org, 123movies-com, 123movies official, 123movies, 123movies free, free movies, movies online, watch movies online, watch movies free, 123movies, gomovies, putlocker, putlockers, soap2day'
         />
         <meta
-          property='og:image'
-          content='https://123movieonline.netlify.app/og_image.jpg'
+          name='description'
+          content='Stream HD movies and TV series for free on 123Movies Online. Explore, stream, and download full-length movies and shows in HD quality without registration.'
         />
-        <meta property='og:image:width' content='1280px' />
-        <meta property='og:image:height' content='720px' />
-        <meta property='og:image:type' content='image/webp' />
+        <link rel='canonical' href='http://localhost:3000/' />
+        <meta property='og:locale' content='en_US' />
+        <meta property='og:type' content='video.movie' />
+        <meta property='og:type' content='website' />
+        <meta
+          property='og:title'
+          content='123Movies Online™ - Explore. Stream. Online. '
+        />
+        <meta property='og:url' content='http://localhost:3000/' />
+        <meta
+          property='og:site_name'
+          content='123Movies Online™ - Explore. Stream. Online. '
+        />
+        <meta
+          property='og:image'
+          content='http://localhost:3000/og_image.jpg'
+        />
+        <meta property='og:image:width' content='1200' />
+        <meta property='og:image:height' content='630' />
+        <meta property='og:image:type' content='image/jpg' />
+        <meta
+          name='application-name'
+          content='123Movies Online™ - Explore. Stream. Online. '
+        />
+        <meta
+          property='article:modified_time'
+          content='2024-01-01T13:13:13+00:00'
+        />
+        <link
+          rel='sitemap'
+          type='application/xml'
+          title='Sitemap'
+          href='http://localhost:3000/sitemap.xml'
+        />
         <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:label1' content='Est. reading time' />
-        <meta name='twitter:data1' content='1 minute' />
+        <meta
+          name='twitter:title'
+          content='123Movies Online™ - Explore. Stream. Online.  HD Movies and TV Series Free'
+        />
+        <meta
+          name='twitter:description'
+          content='Stream HD movies and TV series for free on 123Movies Online™. Explore, stream, and download full-length movies and shows in HD quality without registration.'
+        />
+        <meta
+          name='twitter:image'
+          content='http://localhost:3000/og_image.jpg'
+        />
         <meta
           name='google-site-verification'
           content='o8uNsADswyHnNPA69n9gI7u6L4_cdjN4iT5lRhHHtMU'
         />
+
         <meta
           name='facebook-domain-verification'
           content='du918bycikmo1jw78wcl9ih6ziphd7'
         />
         <meta
           name='dailymotion-domain-verification'
-          content='dmv6sg06w9r5eji88'
+          content='dm0x7o2qx13altq75'
         />
+        <meta name='monetag' content='98a412cb5612b9188cd76b9744304b6c' />
 
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: rankMathSchema }}
+        />
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: uwatchfreeSchema }}
         />
-
         <script
           type='application/ld+json'
-          dangerouslySetInnerHTML={{ __html: softwareSchema }}
-        />
-        <script
-          type='application/ld+json'
-          dangerouslySetInnerHTML={{ __html: breadcrumbSchema }}
+          dangerouslySetInnerHTML={{ __html: languagesSchema }}
         />
       </Head>
-      <SocialSharing />
-      {/* <Script src='../../propler/ads.js' defer />
-      <Script src='../../propler/ads2.js' defer /> */}
-   
-      <h1
-        className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl badge bg-gradient-to-r from-pink-500 to-amber-500 font-bold py-3 px-6  shadow-lg hover:from-amber-600 hover:to-pink-600 transition duration-300'
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '10px',
-          fontSize: '35px',
-          fontFamily: 'Poppins, sans-serif',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          marginBottom: '15px'
-        }}
-      >
-        123Moviesonline Main Section.
-      </h1>
-      <GoogleTranslate />
-      <span className='px-0 bg-clip-text text-sm text-black font-bold mt-2'>
-        <SearchComponent />
-      </span>
-      <div className="flex flex-wrap justify-center my-4 gap-2">
-      {/* TV Show movies button */}
-      <Link href="/home" passHref>
-        <button
-          className={`px-4 py-2 border rounded ${
-            router.pathname === '/home'
-              ? 'bg-red-500 text-white font-bold'
-              : 'bg-gray-200 hover:bg-green-500 text-black font-bold'
-          }`}
-        >
-          Page 1
-        </button>
-      </Link>
 
-      {/* Page 2, Page 3, Page 4 buttons */}
-      {[2, 3, 4, 5, 6, 7,  ].map((page) => (
-        <Link key={page} href={`/home/page${page}`} passHref>
-          <button
-            className={`px-4 py-2 border rounded ${
-              router.pathname === `/home/page${page}`
-                ? 'bg-red-500 text-white font-bold'
-                : 'bg-gray-200 hover:bg-green-500 text-black font-bold'
-            }`}
+      <div className='container'>
+        <div className='content'>
+          <h1 className='title'>Welcome to 123Moviesonline™</h1>
+          <h2 className='highlight'>
+            Discover the Best Movies and TV Shows to Stream on 123Movies Online™
+          </h2>
+          <p className='description'>
+            Welcome to <strong>123Movies Online™</strong>, your premier destination for streaming the latest and most popular movies and TV shows. Our platform offers an extensive collection of entertainment options, allowing you to explore a wide variety of genres and discover new favorites. Whether you're looking for action-packed thrillers, heartwarming dramas, or laugh-out-loud comedies, <strong>123Movies Online™</strong> has something for everyone.
+          </p>
+          <p className='description'>
+            With a user-friendly interface and high-quality streaming, <strong>123Movies Online™</strong> makes it easy to find and enjoy your favorite content. Our library is regularly updated with the latest releases, ensuring that you have access to the newest movies and TV shows as soon as they are available. Stream online seamlessly and enjoy an immersive viewing experience from the comfort of your home.
+          </p>
+          <p className='description'>
+            At <strong>123Movies Online™</strong>, we are committed to providing a top-notch streaming service that meets all your entertainment needs. Join us today and explore the vast world of movies and TV shows available at your fingertips. Whether you're a casual viewer or a dedicated binge-watcher, <strong>123Movies Online™</strong> is the perfect place to stream online and stay entertained.
+          </p>
+
+          <a
+            href='https://t.me/watchmovietvshow/'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='telegram-link'
           >
-            PAGE {page}
-          </button>
-        </Link>
-      ))}
-    </div>
+            <h3>
+              For Request or Demand Movies & TV Series Join Telegram
+              <i className='fab fa-telegram telegram-icon'></i>
+            </h3>
+          </a>
 
-      <div className='container mx-auto px-4 py-6'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-          {items.map(item => (
-            <div
-              key={item.id}
-              className='card bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 duration-300'
-            >
-             <Link key={item.id} href={item.siteurl || '/'}>
-                <div>
-                  <div className='relative'>
-                    {/* Badge in front of the image */}
-                    <div className='absolute top-2 left-2 z-10 badge bg-gradient-to-r from-pink-500 to-amber-500 text-white py-2 px-4 rounded-lg text-center font-bold'>
-                      {item.badge}
-                    </div>
-                    <div className='w-full h-60 md:h-80 lg:h-96'>
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        width={1280}
-                        height={720}
-                        objectFit='cover'
-                        className='w-full h-full rounded-t-lg'
-                        quality={90}
-                        loading='lazy'
-                        style={{
-                          borderRadius: '0.5rem',
-                          filter:
-                            'contrast(1.1) saturate(1.1) brightness(1.0) hue-rotate(0deg)'
-                        }}
-                      />
-                    </div>
-                    <div className='p-4'>
-                      <h2 className='text-gray-500 mb-4'>
-                        <span className='font-bold text-blue-500'>
-                          {item.title}
-                        </span>
-                      </h2>
-                      <p className='text-gray-700 mb-2'>{item.text}</p>
-                      <p className='text-gray-500 mb-2'>
-                        License:{' '}
-                        <span className='font-bold text-blue-500'>
-                          {item.license}
-                        </span>
-                      </p>
-                      <p className='text-gray-500 mb-4'>
-                        Version:{' '}
-                        <span className='font-bold text-blue-500'>
-                          {item.version}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          ))}
+          <p className='subtitle'>
+            The premier platform for the latest releases and secure downloads.
+          </p>
+          <Link href='http://localhost:3000/home'>
+            <div className='cta-button'>Enter 123Moviesonline™</div>
+          </Link>
         </div>
       </div>
-    </div>
-  )
+
+      <style jsx>{`
+        .container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          padding: 0 20px;
+          background: #000;
+          font-family: 'Poppins', sans-serif;
+        }
+
+        .content {
+          text-align: center;
+          width: 100%;
+          color: #fff;
+          padding: 20px;
+        }
+
+        .title {
+          font-size: 1.25rem;
+          font-weight: 900;
+          margin-bottom: 1rem;
+          text-transform: uppercase;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .highlight {
+          font-size: 1.5rem;
+          background: linear-gradient(to right, #ff7e5f, #feb47b);
+          background-clip: text;
+          color: transparent;
+          font-weight: bold;
+          margin-top: 1rem;
+        }
+
+        .description {
+          font-size: 1rem;
+          background: linear-gradient(to right, #ff7e5f, #feb47b);
+          background-clip: text;
+          color: transparent;
+          margin-top: 1rem;
+        }
+
+        .telegram-link {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          font-weight: bold;
+          background: linear-gradient(to right, #ff7e5f, #feb47b);
+          background-clip: text;
+          color: transparent;
+          margin-top: 25px;
+        }
+
+        .telegram-icon {
+          color: #0088cc;
+          margin-left: 10px;
+          font-size: 2rem;
+          animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+
+        .subtitle {
+          font-size: 0.875rem;
+          margin-top: 1rem;
+          background: linear-gradient(to right, #ff7e5f, #feb47b);
+          background-clip: text;
+          color: transparent;
+        }
+
+        .cta-button {
+          display: inline-block;
+          padding: 0.5rem 1rem;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #ff7e5f;
+          background-color: #fff;
+          border-radius: 50px;
+          box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+          text-transform: uppercase;
+          transition: all 0.3s ease;
+          margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+          background-color: #ff6f61;
+          color: #fff;
+          box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+          transform: translateY(-3px);
+        }
+
+        @media (min-width: 768px) {
+          .title {
+            font-size: 2rem;
+          }
+
+          .highlight {
+            font-size: 2rem;
+          }
+
+          .telegram-link {
+            font-size: 2rem;
+          }
+
+          .cta-button {
+            font-size: 1.125rem;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .title {
+            font-size: 2.5rem;
+          }
+
+          .highlight {
+            font-size: 2.5rem;
+          }
+
+          .telegram-link {
+            font-size: 2.5rem;
+          }
+
+          .cta-button {
+            font-size: 1.25rem;
+            padding: 1rem 2rem;
+          }
+        }
+      `}</style>
+    </>
+  );
 }
-
-export async function getStaticProps () {
-  try {
-    const res = await fetch('https://123movieonline.netlify.app/movies.json')
-    const data = await res.json()
-
-    return {
-      props: {
-        items: data
-      }
-    }
-  } catch (error) {
-    console.error('Error fetching data:', error)
-    return {
-      props: {
-        items: []
-      }
-    }
-  }
-}
-
-export default moviesPage
