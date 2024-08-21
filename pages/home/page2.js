@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import latestData from '../../public/latest.json'
-import moviesData from '../../public/movies.json'
+import moviesp2Data from '../../public/moviesp2.json'
 import { useRouter } from 'next/router'
 import GoogleTranslate from '../../components/GoogleTranslate'
 import SocialSharing from '../../components/SocialSharing'
@@ -42,9 +42,9 @@ const uwatchfreeSchema = JSON.stringify([
 const softwareSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Article',
-  '@id': 'https://123movieonline.netlify.app/page2',
+  '@id': 'https://123movieonline.netlify.app/page3p3',
   headline: 'movies Section | 123Moviesonline™',
-  url: 'https://123movieonline.netlify.app/page2',
+  url: 'https://123movieonline.netlify.app/page3p3',
   description:
     '123Moviesonline - Stream HD movies and TV series for free on 123Movies Online. Explore, stream, and download full-length movies and shows in HD quality without registration.',
   image: 'https://123movieonline.netlify.app/og_image.jpg',
@@ -65,7 +65,7 @@ const softwareSchema = JSON.stringify({
   dateModified: '2024-06-02',
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://123movieonline.netlify.app/page2'
+    '@id': 'https://123movieonline.netlify.app/page3'
   },
   additionalProperty: {
     '@type': 'PropertyValue',
@@ -88,12 +88,12 @@ const breadcrumbSchema = JSON.stringify({
       '@type': 'ListItem',
       position: 2,
       name: 'movies',
-      item: 'https://123movieonline.netlify.app/page2'
+      item: 'https://123movieonline.netlify.app/page3p3'
     }
   ]
 })
 
-const moviespage2 = ({ items }) => {
+const moviesPage3 = ({ items }) => {
   const [latest, setLatest] = useState(latestData)
 
   const router = useRouter() // Initialize the router
@@ -142,9 +142,9 @@ const moviespage2 = ({ items }) => {
   const softwareSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Article',
-    '@id': 'https://123movieonline.netlify.app/page2',
+    '@id': 'https://123movieonline.netlify.app/page3p3',
     headline: 'movies Section | 123Moviesonline™',
-    url: 'https://123movieonline.netlify.app/page2',
+    url: 'https://123movieonline.netlify.app/page3p3',
     description:
       '123Moviesonline - Stream HD movies and TV series for free on 123Movies Online. Explore, stream, and download full-length movies and shows in HD quality without registration.',
     image: 'https://123movieonline.netlify.app/og_image.jpg',
@@ -165,7 +165,7 @@ const moviespage2 = ({ items }) => {
     dateModified: '2024-06-02',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': 'https://123movieonline.netlify.app/page2'
+      '@id': 'https://123movieonline.netlify.app/page3p3'
     },
     additionalProperty: {
       '@type': 'PropertyValue',
@@ -197,8 +197,8 @@ const moviespage2 = ({ items }) => {
     // <div className='w-full' style={{ backgroundColor: '#D3D3D3' }}>
     <div className='w-full' style={{ backgroundColor: '#000' }}>
       <Head>
-        <title> Main Section 2 | 123Moviesonline™</title>
-        <link rel='canonical' href='https://123movieonline.netlify.app/page2' />
+        <title> Main Section 3 | 123Moviesonline™</title>
+        <link rel='canonical' href='https://123movieonline.netlify.app/page3p3' />
         <meta
           name='robots'
           content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
@@ -208,13 +208,13 @@ const moviespage2 = ({ items }) => {
         <meta name='revisit-after' content='1 days' />
         <meta property='og:locale' content='en_US' />
         <meta property='og:type' content='website' />
-        <meta property='og:title' content=' Main Section 2 | 123Moviesonline™' />
+        <meta property='og:title' content=' Main Section 3 | 123Moviesonline™' />
         <meta
           property='og:description'
           content='123Moviesonline™ - Stream HD movies and TV series for free on 123Movies Online. Explore, stream, and download full-length movies and shows in HD quality without registration.'
         />
 
-        <meta property='og:url' content='https://123movieonline.netlify.app/page2' />
+        <meta property='og:url' content='https://123movieonline.netlify.app/page3' />
 
         <meta property='og:site_name' content='123Moviesonline™' />
         <meta property='og:type' content='article' />
@@ -330,7 +330,8 @@ const moviespage2 = ({ items }) => {
               key={item.id}
               className='card bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 duration-300'
             >
-               <Link href={item.siteurl}>
+                {/* <Link key={item.id} href={item.siteurl || '/'}> */}
+                <Link href={item.siteurl}>
                 <div>
                   <div className='relative'>
                     {/* Badge in front of the image */}
@@ -394,4 +395,4 @@ export async function getStaticProps () {
   }
 }
 
-export default moviespage2
+export default moviesPage3
