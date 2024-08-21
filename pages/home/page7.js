@@ -93,7 +93,7 @@ const breadcrumbSchema = JSON.stringify({
   ]
 })
 
-const moviesPage7 = ({ items }) => {
+const moviespage7 = ({ items }) => {
   const [latest, setLatest] = useState(latestData)
 
   const router = useRouter() // Initialize the router
@@ -114,7 +114,7 @@ const moviesPage7 = ({ items }) => {
     // <div className='w-full' style={{ backgroundColor: '#D3D3D3' }}>
     <div className='w-full' style={{ backgroundColor: '#000' }}>
       <Head>
-        <title> Main Section 6 | 123Moviesonline™</title>
+        <title> Main Section 7 | 123Moviesonline™</title>
         <link rel='canonical' href='https://123movieonline.netlify.app/page7/' />
         <meta
           name='robots'
@@ -125,7 +125,7 @@ const moviesPage7 = ({ items }) => {
         <meta name='revisit-after' content='1 days' />
         <meta property='og:locale' content='en_US' />
         <meta property='og:type' content='website' />
-        <meta property='og:title' content=' Main Section 6 | 123Moviesonline™' />
+        <meta property='og:title' content=' Main Section 7 | 123Moviesonline™' />
         <meta
           property='og:description'
           content='123Moviesonline™ - Stream HD movies and TV series for free on 123Movies Online. Explore, stream, and download full-length movies and shows in HD quality without registration.'
@@ -312,5 +312,5 @@ export async function getStaticProps () {
   }
 }
 
-export default moviesPage7
+export default moviespage7
 
